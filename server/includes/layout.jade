@@ -1,0 +1,24 @@
+//
+   Created by nayab on 9/5/16.
+doctype
+html
+    head
+        link(href="/favicon.ico", rel="shortcut icon", type="image/x-icon")
+
+        //- inject:css
+        link(rel="stylesheet", href="/public/lib/toastr/toastr.css")
+        link(rel="stylesheet", href="/public/lib/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/server/site.css")
+        link(rel="stylesheet", href="/public/lib/font-awesome/css/font-awesome.min.css")
+        //- endinject
+
+        //- inject:js
+        script(src="/public/lib/jquery/dist/jquery.js")
+        script(src="/public/lib/toastr/toastr.js")
+        script(src="/public/lib/angular/angular.js")
+        script(src="/public/lib/angular-resource/angular-resource.js")
+        script(src="/public/lib/angular-route/angular-route.js")
+        script(src="/public/lib/bootstrap/dist/js/bootstrap.js")
+        //- endinject
+    body
+        block main-content
