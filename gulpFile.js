@@ -48,7 +48,7 @@ gulp.task('inject', function () {
 
     var stylusFiles = gulp.src('./public/css/*.styl')
         .pipe(stylus())
-        .pipe(gulp.dest('./server'));
+        .pipe(gulp.dest('./public/css/'));
 
     var injectSrc = gulp.src(['./public/css/*.css', './public/js/*.js'],
         {read: false});
