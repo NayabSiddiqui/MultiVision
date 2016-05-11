@@ -4,7 +4,12 @@
 var express = require('express'),
     stylus = require('stylus'),
     logger = require('morgan'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose');
+
+var Message = require('./server/models/messageModel');
+
+var globalRouter = require('./server/routes/globalRoutes')(Message);
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -27,9 +32,31 @@ app.use(stylus.middleware({
 }));
 app.use(express.static(__dirname + '/public'));
 
-app.get('*', function (request, response) {
-    response.render('index');
+mongoose.connect('mongodb://localhost:27017/multivision');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error...'));
+db.once('open', function () {
+    console.log('multivision db opened...');
 });
+
+var mongoMessage;
+
+Message.findOne().exec(function (error, messageDoc) {
+    mongoMessage = messageDoc.message;
+});
+
+app.get('/partials/:partialPath', function (request, response) {
+    console.log(request.params.partialPath);
+    response.render('partials/' + request.params.partialPath);
+});
+
+app.use('*', globalRouter);
+
+/*app.get('*', function (request, response) {
+    response.render('index', {
+        mongoMessage: mongoMessage
+    });
+});*/
 
 var port = 3030;
 app.listen(port, function () {
