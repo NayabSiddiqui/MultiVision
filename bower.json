@@ -32,7 +32,7 @@
     "font-awesome": {
       "main": [
         "less/font-awesome.less",
-        "scss/font-awesome.scss",
+        "css/font-awesome.css",
         "css/font-awesome.min.css"
       ]
     }
