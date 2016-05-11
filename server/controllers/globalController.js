@@ -10,9 +10,7 @@ var globalController = function (Message) {
                 response.send('Internal error occurred !');
             }
             else {
-                response.render('index', {
-                    mongoMessage: messageDoc.message
-                });
+                response.render('index');
             }
         });
     };

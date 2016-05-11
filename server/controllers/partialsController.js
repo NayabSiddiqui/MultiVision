@@ -3,7 +3,7 @@
  */
 var partialsController = function () {
     var get = function (request, response) {
-        response.render('partials/' + request.params.partialPath);
+        response.render('../../public/app' + request.params[0]);
     };
 
     return {

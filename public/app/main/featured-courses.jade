@@ -1,0 +1,7 @@
+//
+   Created by nayab on 11/5/16.
+.panel.panel-primary
+    .panel-heading.text-center Featured Courses
+    .panel-body
+        .row(ng-repeat="course in courses | filter: {featured: true}")
+            .col-md-12 {{ course.name }}

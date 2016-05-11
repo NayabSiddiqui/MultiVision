@@ -7,7 +7,7 @@ var routes = function () {
 
     var controller = require('../controllers/partialsController')();
 
-    partialRouter.route('/:partialPath')
+    partialRouter.route('*')
         .get(controller.get);
 
     return partialRouter;
