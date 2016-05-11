@@ -9,7 +9,8 @@ var express = require('express'),
 
 var Message = require('./server/models/messageModel');
 
-var globalRouter = require('./server/routes/globalRoutes')(Message);
+var globalRouter = require('./server/routes/globalRoutes')(Message),
+    partialsRouter = require('./server/routes/partialRoutes')();
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -44,24 +45,8 @@ db.once('open', function () {
     console.log('multivision db opened...');
 });
 
-var mongoMessage;
-
-Message.findOne().exec(function (error, messageDoc) {
-    mongoMessage = messageDoc.message;
-});
-
-app.get('/partials/:partialPath', function (request, response) {
-    console.log(request.params.partialPath);
-    response.render('partials/' + request.params.partialPath);
-});
-
+app.use('/partials', partialsRouter);
 app.use('*', globalRouter);
-
-/*app.get('*', function (request, response) {
-    response.render('index', {
-        mongoMessage: mongoMessage
-    });
-});*/
 
 var port = process.env.PORT || 3030;
 app.listen(port, function () {
