@@ -6,20 +6,20 @@
 
     window.app.controller('navBarLoginController', navBarLoginController);
 
-    navBarLoginController.$inject = ['$scope', '$http'];
+    navBarLoginController.$inject = ['$scope', 'notifierService', 'identityService', 'authenticationService'];
 
-    function navBarLoginController($scope, $http) {
+    function navBarLoginController($scope, notifierService, identityService, authenticationService) {
+
+        $scope.identity = identityService;
+
         $scope.signIn = function (userName, password) {
-            $http.post('/auth/login', {
-                userName: userName,
-                password: password
-            })
-                .then(function (response) {
-                    if(response.data.success) {
-                        console.log('logged in !');
+            authenticationService.authenticateUser(userName, password)
+                .then(function (success) {
+                    if(success) {
+                        notifierService.notifySuccess('You have successfully logged in !')
                     }
                     else {
-                        console.log("could not sign in..");
+                        notifierService.notifyError("Incorrect username or password !");
                     }
                 });
         };

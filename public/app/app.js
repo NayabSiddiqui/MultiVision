@@ -14,5 +14,7 @@
                 controller: 'mainController'
             });
     });
+
+    window.app.value('appToastr', toastr);
 })();
 

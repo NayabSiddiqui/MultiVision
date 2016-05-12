@@ -1,7 +1,7 @@
 //
    Created by nayab on 11/5/16.
 .navbar-right(ng-controller="navBarLoginController")
-    form.navbar-form
+    form.navbar-form(ng-hide="identity.isAuthenticated()")
         .form-group
             input.form-control(placeholder="Email", ng-model="userName")
         .form-group
