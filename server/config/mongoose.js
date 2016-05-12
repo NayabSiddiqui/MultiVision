@@ -10,6 +10,17 @@ var mongooseConfig = function (config) {
     db.once('open', function () {
         console.log('multivision db opened...');
     });
+
+    // Seed User data
+    var User = require('../models/userModel');
+
+    User.find({}).exec(function (error, collection) {
+        if(collection.length === 0){
+            User.create({firstName: 'Joe', lastName: 'Eames', userName: 'Joe'});
+            User.create({firstName: 'John', lastName: 'Papa', userName: 'John'});
+            User.create({firstName: 'Dan', lastName: 'Wahlin', userName: 'Dan'});
+        }
+    })
 };
 
 module.exports = mongooseConfig;
