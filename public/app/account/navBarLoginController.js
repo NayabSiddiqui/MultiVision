@@ -6,21 +6,34 @@
 
     window.app.controller('navBarLoginController', navBarLoginController);
 
-    navBarLoginController.$inject = ['$scope', 'notifierService', 'identityService', 'authenticationService'];
+    navBarLoginController.$inject = ['$scope', 'notifierService', 'identityService', 'authenticationService', '$location'];
 
-    function navBarLoginController($scope, notifierService, identityService, authenticationService) {
+    function navBarLoginController($scope, notifierService, identityService, authenticationService, $location) {
 
-        $scope.identity = identityService;
+        $scope.identiy = identityService;
+
+        $scope.fullName = null;
 
         $scope.signIn = function (userName, password) {
             authenticationService.authenticateUser(userName, password)
                 .then(function (success) {
                     if(success) {
-                        notifierService.notifySuccess('You have successfully logged in !')
+                        notifierService.notifySuccess('You have successfully logged in !');
+                        $scope.fullName = identityService.currentUser.firstName + " " + identityService.currentUser.lastName;
                     }
                     else {
                         notifierService.notifyError("Incorrect username or password !");
                     }
+                });
+        };
+
+        $scope.signOut = function () {
+            authenticationService.logoutUser()
+                .then(function () {
+                    $scope.userName = "";
+                    $scope.password = "";
+                    notifierService.notifySuccess('You have successfully logged out !');
+                    $location.path('/');
                 });
         };
     };

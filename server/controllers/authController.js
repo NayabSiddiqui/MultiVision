@@ -27,8 +27,14 @@ var authController = function () {
         auth(request, response, next);
     };
 
+    var logout = function (request, response) {
+        request.logout();
+        response.end();
+    };
+
     return {
-        authenticate: authenticate
+        authenticate: authenticate,
+        logout: logout
     };
 };
 

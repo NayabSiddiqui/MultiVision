@@ -7,7 +7,7 @@
 
     window.app.factory('authenticationService', authenticationService);
 
-    authenticationService.$inject = ['$http', 'identityService', $q];
+    authenticationService.$inject = ['$http', 'identityService', '$q'];
 
     function authenticationService($http, identityService, $q) {
 
@@ -30,8 +30,21 @@
             return deferred.promise;
         };
 
+        var logoutUser = function () {
+            var deferred = $q.defer();
+            $http.post('/auth/logout', {
+                logout: true
+            })
+                .then(function () {
+                    identityService.setUser(null);
+                    deferred.resolve();
+                });
+            return deferred.promise;
+        };
+
         return {
-            authenticateUser: authenticateUser
+            authenticateUser: authenticateUser,
+            logoutUser: logoutUser
         };
     };
 })();

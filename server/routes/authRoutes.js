@@ -8,6 +8,10 @@ var routes = function () {
     authRouter.route('/login')
         .post(controller.authenticate);
 
+
+    authRouter.route('/logout')
+        .post(controller.logout);
+
     return authRouter;
 };
 

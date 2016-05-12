@@ -8,14 +8,14 @@
     window.app.factory('identityService', identityService);
 
     function identityService() {
-        var currentUser = undefined;
+        var currentUser = null;
 
         var isAuthenticated = function () {
-            return !!currentUser;
+            return this.currentUser != null;
         };
 
         var setUser = function (user) {
-            currentUser = user;
+            this.currentUser = user;
         };
 
         return {

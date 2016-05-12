@@ -8,9 +8,9 @@ head
 
     //- inject:css
     link(rel="stylesheet", href="/lib/toastr/toastr.css")
-    link(rel="stylesheet", href="/lib/bootstrap/dist/css/bootstrap.min.css")
     link(rel="stylesheet", href="/lib/font-awesome/css/font-awesome.css")
     link(rel="stylesheet", href="/lib/font-awesome/css/font-awesome.min.css")
+    link(rel="stylesheet", href="/lib/bootstrap/dist/css/bootstrap.min.css")
     //- endinject
 
     //- site:css
@@ -21,28 +21,29 @@ head
     link(rel="stylesheet", href="/css/site.css")
     //- endinject
 
+    //- inject:js
+    script(src="/lib/jquery/dist/jquery.js")
+    script(src="/lib/toastr/toastr.js")
+    script(src="/lib/angular/angular.js")
+    script(src="/lib/angular-resource/angular-resource.js")
+    script(src="/lib/angular-route/angular-route.js")
+    script(src="/lib/bootstrap/dist/js/bootstrap.js")
+    //- endinject
+
+    //- angular:js
+    script(src="/app/app.js")
+    script(src="/app/account/authenticationService.js")
+    script(src="/app/account/identityService.js")
+    script(src="/app/account/navBarLoginController.js")
+    script(src="/app/common/notifierService.js")
+    script(src="/app/main/mainController.js")
+    //- endinject
+
+    //- site:js
+    //- endinject
 
 
 body(ng-app='jedi')
     block main-content
 
-//- inject:js
-script(src="/lib/jquery/dist/jquery.js")
-script(src="/lib/toastr/toastr.js")
-script(src="/lib/angular/angular.js")
-script(src="/lib/angular-resource/angular-resource.js")
-script(src="/lib/angular-route/angular-route.js")
-script(src="/lib/bootstrap/dist/js/bootstrap.js")
-//- endinject
 
-//- angular:js
-script(src="/app/app.js")
-script(src="/app/account/authenticationService.js")
-script(src="/app/account/identityService.js")
-script(src="/app/account/navBarLoginController.js")
-script(src="/app/common/notifierService.js")
-script(src="/app/main/mainController.js")
-//- endinject
-
-//- site:js
-//- endinject
