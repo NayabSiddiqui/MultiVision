@@ -10,16 +10,29 @@
 
     function navBarLoginController($scope, notifierService, identityService, authenticationService, $location) {
 
-        $scope.identiy = identityService;
-
         $scope.fullName = null;
+
+        function setUserFullName() {
+            var currentUser = identityService.getCurrentUser();
+            $scope.fullName = currentUser.firstName + " " + currentUser.lastName;
+        };
+
+        $scope.isAuthenticated = function () {
+            if(identityService.isAuthenticated()){
+                setUserFullName();
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
 
         $scope.signIn = function (userName, password) {
             authenticationService.authenticateUser(userName, password)
                 .then(function (success) {
                     if(success) {
                         notifierService.notifySuccess('You have successfully logged in !');
-                        $scope.fullName = identityService.currentUser.firstName + " " + identityService.currentUser.lastName;
+                        setUserFullName();
                     }
                     else {
                         notifierService.notifyError("Incorrect username or password !");

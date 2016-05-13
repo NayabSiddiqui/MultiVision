@@ -10,7 +10,9 @@ var globalController = function (Message) {
                 response.send('Internal error occurred !');
             }
             else {
-                response.render('index');
+                response.render('index', {
+                    bootstrappedUser: request.user
+                });
             }
         });
     };

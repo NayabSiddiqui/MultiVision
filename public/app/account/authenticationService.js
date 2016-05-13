@@ -19,7 +19,8 @@
                 })
                 .then(function (response) {
                     if(response.data.success) {
-                        identityService.setUser(response.data.user);
+                        identityService.setCurrentUser(response.data.user);
+                        console.log(identityService.currentUser);
                         deferred.resolve(true);
                     }
                     else {
@@ -36,7 +37,7 @@
                 logout: true
             })
                 .then(function () {
-                    identityService.setUser(null);
+                    identityService.setCurrentUser(null);
                     deferred.resolve();
                 });
             return deferred.promise;

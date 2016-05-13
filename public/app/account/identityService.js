@@ -7,21 +7,34 @@
 
     window.app.factory('identityService', identityService);
 
-    function identityService() {
+    identityService.$inject = ['$window']
+
+    function identityService($window) {
+
         var currentUser = null;
 
         var isAuthenticated = function () {
-            return this.currentUser != null;
+            return currentUser != null;
         };
 
-        var setUser = function (user) {
-            this.currentUser = user;
+        var getCurrentUser = function () {
+            return currentUser;
         };
+
+        var setCurrentUser = function (user) {
+            currentUser = user;
+        }
+
+        if(!!$window.bootstrappedUserObject) {
+            setCurrentUser($window.bootstrappedUserObject);
+            console.log(currentUser);
+            console.log($window.bootstrappedUserObject);
+        }
 
         return {
-            currentUser: currentUser,
-            isAuthenticated: isAuthenticated,
-            setUser: setUser
+            getCurrentUser: getCurrentUser,
+            setCurrentUser: setCurrentUser,
+            isAuthenticated: isAuthenticated
         };
     };
 })();

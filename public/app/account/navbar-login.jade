@@ -1,13 +1,13 @@
 //
    Created by nayab on 11/5/16.
 .navbar-right(ng-controller="navBarLoginController")
-    form.navbar-form(ng-hide="identiy.isAuthenticated()")
+    form.navbar-form(ng-hide="isAuthenticated()")
         .form-group
             input.form-control(placeholder="Email", ng-model="userName")
         .form-group
             input.form-control(type="password", placeholder="Password", ng-model="password")
         button.btn.btn-primary(ng-click="signIn(userName, password)") Sign In
-    ul.nav.navbar-nav.navbar-right(ng-show="identiy.isAuthenticated()")
+    ul.nav.navbar-nav.navbar-right(ng-show="isAuthenticated()")
         li.dropdown
             a.dropdown-toggle(href="#", data-toggle="dropdown")
                 span {{ fullName }}&nbsp;
