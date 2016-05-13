@@ -27,6 +27,28 @@ var authController = function () {
         auth(request, response, next);
     };
 
+    var requiresAuthenticatedRequest = function (request, response, next) {
+        if(!request.isAuthenticated()) {
+            response.status(403);
+            response.end();
+        }
+        else {
+            next();
+        }
+    };
+
+    var requiresRole = function (role) {
+        return function (request, response, next) {
+            if(!request.isAuthenticated() || request.user.roles.indexOf(role) == -1) {
+                response.status(403);
+                response.end();
+            }
+            else {
+                next();
+            }
+        }
+    };
+
     var logout = function (request, response) {
         request.logout();
         response.end();
@@ -34,6 +56,8 @@ var authController = function () {
 
     return {
         authenticate: authenticate,
+        requiresAuthenticatedRequest: requiresAuthenticatedRequest,
+        requiresRole: requiresRole,
         logout: logout
     };
 };
