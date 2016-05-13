@@ -11,7 +11,8 @@ var userSchema = new Schema({
     lastName: String,
     userName: String,
     salt: String,
-    hashedPassword: String
+    hashedPassword: String,
+    roles: [String]
 });
 
 userSchema.methods = {

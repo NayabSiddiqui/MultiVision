@@ -21,11 +21,11 @@ var mongooseConfig = function (config) {
 
             salt = passwordUtility.createSalt();
             hash = passwordUtility.hashPassword(salt, 'Joe');
-            User.create({firstName: 'Joe', lastName: 'Eames', userName: 'Joe', salt: salt, hashedPassword: hash});
+            User.create({firstName: 'Joe', lastName: 'Eames', userName: 'Joe', salt: salt, hashedPassword: hash, roles: ['admin']});
 
             salt = passwordUtility.createSalt();
             hash = passwordUtility.hashPassword(salt, 'John');
-            User.create({firstName: 'John', lastName: 'Papa', userName: 'John', salt: salt, hashedPassword: hash});
+            User.create({firstName: 'John', lastName: 'Papa', userName: 'John', salt: salt, hashedPassword: hash, roles: []});
 
             salt = passwordUtility.createSalt();
             hash = passwordUtility.hashPassword(salt, 'Dan');

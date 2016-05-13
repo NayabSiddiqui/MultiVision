@@ -14,6 +14,10 @@
                 i.fa.fa-user &nbsp;
                 b.caret
             ul.dropdown-menu
+                li(ng-show="isAdmin()")
+                    a(href="/admin/user")
+                        span User Admin &nbsp;
+                        i.fa.fa-fw.fa-hand-spock-o
                 li
                     a(href="#", ng-click="signOut()")
                         span Sign Out &nbsp;

@@ -7,9 +7,9 @@
 
     window.app.factory('identityService', identityService);
 
-    identityService.$inject = ['$window']
+    identityService.$inject = ['$window', 'userService']
 
-    function identityService($window) {
+    function identityService($window, userService) {
 
         var currentUser = null;
 
@@ -26,9 +26,9 @@
         }
 
         if(!!$window.bootstrappedUserObject) {
-            setCurrentUser($window.bootstrappedUserObject);
-            console.log(currentUser);
-            console.log($window.bootstrappedUserObject);
+            var user = new userService();
+            angular.extend(user, $window.bootstrappedUserObject)
+            setCurrentUser(user);
         }
 
         return {

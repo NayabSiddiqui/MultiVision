@@ -7,9 +7,9 @@
 
     window.app.factory('authenticationService', authenticationService);
 
-    authenticationService.$inject = ['$http', 'identityService', '$q'];
+    authenticationService.$inject = ['$http', 'identityService', '$q', 'userService'];
 
-    function authenticationService($http, identityService, $q) {
+    function authenticationService($http, identityService, $q, userService) {
 
         var authenticateUser = function (userName, password) {
             var deferred  = $q.defer();
@@ -19,8 +19,9 @@
                 })
                 .then(function (response) {
                     if(response.data.success) {
-                        identityService.setCurrentUser(response.data.user);
-                        console.log(identityService.currentUser);
+                        var user = new userService();
+                        angular.extend(user, response.data.user);
+                        identityService.setCurrentUser(user);
                         deferred.resolve(true);
                     }
                     else {

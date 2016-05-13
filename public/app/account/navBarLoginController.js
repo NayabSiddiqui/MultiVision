@@ -27,6 +27,10 @@
             }
         };
 
+        $scope.isAdmin = function () {
+            return identityService.getCurrentUser()!= null &&  identityService.getCurrentUser().isAdmin();
+        };
+
         $scope.signIn = function (userName, password) {
             authenticationService.authenticateUser(userName, password)
                 .then(function (success) {
