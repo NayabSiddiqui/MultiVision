@@ -44,6 +44,10 @@
                 });
         };
 
+        $scope.signUp = function () {
+            $location.path('/signUp');
+        };
+
         $scope.signOut = function () {
             authenticationService.logoutUser()
                 .then(function () {

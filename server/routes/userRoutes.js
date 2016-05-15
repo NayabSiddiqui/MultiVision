@@ -4,25 +4,16 @@
 var userRouter = require('express').Router(),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    authController = require('../controllers/authController')();
+    authController = require('../controllers/authController')(),
+    userController = require('../controllers/userController')();
 
 var routes = function () {
 
     userRouter.route('/')
-        .all(authController.requiresAuthenticatedRequest,
-            authController.requiresRole('admin'))
-        .get(function (request, response) {
-            User.find({})
-                .exec(function (error, users) {
-                    if (error) {
-                        response.status(404);
-                        response.send(error);
-                    }
-                    else {
-                        response.send(users);
-                    }
-                })
-        });
+        .get(authController.requiresAuthenticatedRequest,
+            authController.requiresRole('admin'),
+            userController.getAllUsers)
+        .post(userController.createUser);
 
     return userRouter;
 };

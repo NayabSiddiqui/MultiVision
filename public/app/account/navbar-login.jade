@@ -2,29 +2,30 @@
    Created by nayab on 11/5/16.
 .navbar-right(ng-controller="navBarLoginController")
     form.navbar-form(ng-hide="isAuthenticated()")
-        ul.nav.navbar-nav
-            li
-                a(href="/signUp")
-                    span Sign Up &nbsp;
-                    i.fa.fa-fw.fa-hand-spock-o
+      fw.fa-hand-spock-o
         .form-group
             input.form-control(placeholder="Email", ng-model="userName")
         .form-group
             input.form-control(type="password", placeholder="Password", ng-model="password")
         button.btn.btn-primary(ng-click="signIn(userName, password)") Sign In
+        button.btn.btn-default(ng-click="signUp()") Sign Up
     ul.nav.navbar-nav.navbar-right(ng-show="isAuthenticated()")
         li.dropdown
             a.dropdown-toggle(href="#", data-toggle="dropdown")
-                span {{ fullName }}&nbsp;
+                span
                 i.fa.fa-user &nbsp;
+                | {{ fullName }}&nbsp;
                 b.caret
             ul.dropdown-menu
                 li(ng-show="isAdmin()")
                     a(href="/admin/users")
-                        span User Admin &nbsp;
-                        i.fa.fa-fw.fa-hand-spock-o
+                        span
+                        i.fa.fa-fw.fa-hand-spock-o &nbsp;
+                        | User Admin &nbsp;
                 li
                     a(href="#", ng-click="signOut()")
-                        span Sign Out &nbsp;
-                        i.fa.fa-fw.fa-power-off
+                        span
+                        i.fa.fa-fw.fa-power-off &nbsp;
+                        | Sign Out &nbsp;
+
 
