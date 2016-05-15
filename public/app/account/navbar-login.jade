@@ -2,6 +2,11 @@
    Created by nayab on 11/5/16.
 .navbar-right(ng-controller="navBarLoginController")
     form.navbar-form(ng-hide="isAuthenticated()")
+        ul.nav.navbar-nav
+            li
+                a(href="/signUp")
+                    span Sign Up &nbsp;
+                    i.fa.fa-fw.fa-hand-spock-o
         .form-group
             input.form-control(placeholder="Email", ng-model="userName")
         .form-group

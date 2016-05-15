@@ -11,6 +11,20 @@
 
     function authenticationService($http, identityService, $q, userService) {
 
+        var createUser = function (newUserData) {
+            var deferred = $q.defer();
+            var newUser = new userService(newUserData);
+
+            newUser.$save()
+                .then(function () {
+                    identityService.setCurrentUser(newUser);
+                    deferred.resolve();
+                }, function (response) {
+                    deferred.reject(response.data.reason);
+                });
+            return deferred.promise;
+        };
+
         var authenticateUser = function (userName, password) {
             var deferred  = $q.defer();
             $http.post('/auth/login', {
@@ -45,6 +59,7 @@
         };
 
         return {
+            createUser: createUser,
             authenticateUser: authenticateUser,
             logoutUser: logoutUser
         };

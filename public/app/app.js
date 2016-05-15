@@ -33,6 +33,10 @@
                 templateUrl: '/partials/admin/userList',
                 controller: 'userListController',
                 resolve: routeRoleChecks.admin
+            })
+            .when('/signUp', {
+                templateUrl: '/partials/account/signUp',
+                controller: 'signUpController'
             });
     });
 
