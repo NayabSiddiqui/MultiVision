@@ -5,7 +5,7 @@
 
     'use strict';
 
-    window.app.factory('identityService', identityService);
+    angular.module('jedi').factory('identityService', identityService);
 
     identityService.$inject = ['$window', 'userService']
 

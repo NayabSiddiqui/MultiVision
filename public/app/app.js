@@ -4,9 +4,9 @@
 (function () {
     'use strict';
 
-    window.app = angular.module('jedi', ['ngResource', 'ngRoute']);
+    angular.module('jedi', ['ngResource', 'ngRoute']);
 
-    window.app.config(function ($routeProvider, $locationProvider) {
+    angular.module('jedi').config(function ($routeProvider, $locationProvider) {
 
         var routeRoleChecks = {
             admin: {
@@ -36,9 +36,9 @@
             });
     });
 
-    window.app.value('appToastr', toastr);
+    angular.module('jedi').value('appToastr', toastr);
 
-    window.app.run(function ($rootScope, $location) {
+    angular.module('jedi').run(function ($rootScope, $location) {
         $rootScope.$on('$routeChangeError', function (event, current, previous, reason) {
             if (reason === 'Not Authorized') {
                 $location.path('/');

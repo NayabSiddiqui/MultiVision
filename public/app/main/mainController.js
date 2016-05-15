@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    window.app.controller('mainController', mainController);
+    angular.module('jedi').controller('mainController', mainController);
     mainController.$inject = ['$scope'];
 
     function mainController($scope) {

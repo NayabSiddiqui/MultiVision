@@ -5,7 +5,7 @@
 
     'use strict';
 
-    window.app.factory('authenticationService', authenticationService);
+    angular.module('jedi').factory('authenticationService', authenticationService);
 
     authenticationService.$inject = ['$http', 'identityService', '$q', 'userService'];
 

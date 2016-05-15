@@ -19,7 +19,8 @@
     "angular-resource": "^1.5.5",
     "angular-route": "^1.5.5",
     "font-awesome": "^4.6.2",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "angular-mocks": "^1.5.5"
   },
   "overrides": {
     "bootstrap": {

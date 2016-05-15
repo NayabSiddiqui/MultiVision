@@ -5,7 +5,7 @@
 
     'use strict';
 
-    window.app.controller('userListController', userListController);
+    angular.module('jedi').controller('userListController', userListController);
 
     userListController.$inject = ['$scope', 'userService'];
 

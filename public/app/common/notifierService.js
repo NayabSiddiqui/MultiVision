@@ -5,7 +5,7 @@
 
     'use strict';
 
-    window.app.factory('notifierService', notifierService);
+    angular.module('jedi').factory('notifierService', notifierService);
 
     notifierService.$inject = ['appToastr'];
 

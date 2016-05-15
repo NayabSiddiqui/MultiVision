@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    window.app.controller('navBarLoginController', navBarLoginController);
+    angular.module('jedi').controller('navBarLoginController', navBarLoginController);
 
     navBarLoginController.$inject = ['$scope', 'notifierService', 'identityService', 'authenticationService', '$location'];
 

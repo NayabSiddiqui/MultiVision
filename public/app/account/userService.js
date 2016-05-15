@@ -3,7 +3,7 @@
  */
 (function () {
 
-    window.app.factory('userService', userService);
+    angular.module('jedi').factory('userService', userService);
 
     userService.$inject = ['$resource'];
 
