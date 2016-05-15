@@ -7,11 +7,27 @@ var mongoose = require('mongoose'),
 
 
 var userSchema = new Schema({
-    firstName: String,
-    lastName: String,
-    userName: String,
-    salt: String,
-    hashedPassword: String,
+    firstName: {
+        type: String,
+        required: '{PATH} is required.'
+    },
+    lastName: {
+        type: String,
+        required: '{PATH} is required.'
+    },
+    userName: {
+        type: String,
+        required: '{PATH} is required.',
+        unique: true
+    },
+    salt: {
+        type: String,
+        required: '{PATH} is required.'
+    },
+    hashedPassword: {
+        type: String,
+        required: '{PATH} is required.'
+    },
     roles: [String]
 });
 
