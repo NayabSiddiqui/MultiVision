@@ -11,9 +11,18 @@
         var routeRoleChecks = {
             admin: {
                 auth: function (identityService, $q) {
-                    console.log('auth called');
                     if (identityService.isAuthenticated() &&
                         identityService.getCurrentUser().isAdmin()) {
+                        return true;
+                    }
+                    else {
+                        return $q.reject('Not Authorized');
+                    }
+                }
+            },
+            user: {
+                auth: function (identityService, $q) {
+                    if(identityService.isAuthenticated()){
                         return true;
                     }
                     else {
@@ -37,6 +46,11 @@
             .when('/signUp', {
                 templateUrl: '/partials/account/signUp',
                 controller: 'signUpController'
+            })
+            .when('/profile', {
+                templateUrl: '/partials/account/profile',
+                controller: 'profileController',
+                resolve: routeRoleChecks.user
             });
     });
 

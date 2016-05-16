@@ -13,7 +13,8 @@ var routes = function () {
         .get(authController.requiresAuthenticatedRequest,
             authController.requiresRole('admin'),
             userController.getAllUsers)
-        .post(userController.createUser);
+        .post(userController.createUser)
+        .put(userController.updateUser);
 
     return userRouter;
 };

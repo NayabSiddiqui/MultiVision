@@ -32,6 +32,29 @@ var userController = function () {
         })
     };
 
+    var updateUser = function (request, response) {
+        var updatedUser = request.body;
+        if(request.user._id != updatedUser._id) {
+            response.status(403);
+            return response.end();
+        }
+
+        request.user.firstName = updatedUser.firstName;
+        request.user.lastName = updatedUser.lastName;
+        request.user.userName = updatedUser.userName;
+        if(updatedUser.password && updatedUser.password.length > 0) {
+            request.user.salt = passwordUtility.createSalt();
+            request.user.hashedPassword = passwordUtility.hashPassword(request.user.salt, updatedUser.password);
+        }
+        request.user.save(function (error) {
+            if(error) {
+                response.status(400);
+                response.send({reason: error.toString()});
+            }
+            response.send(request.user);
+        })
+    };
+
     var getAllUsers = function (request, response) {
         User.find({})
             .exec(function (error, users) {
@@ -47,6 +70,7 @@ var userController = function () {
 
     return {
         createUser: createUser,
+        updateUser: updateUser,
         getAllUsers: getAllUsers
     };
 };

@@ -25,7 +25,7 @@
                     $location.path('/');
                 }, function (reason) {
                     notifierService.notifyError(reason);
-                })
-        }
+                });
+        };
     };
 })();

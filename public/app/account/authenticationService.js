@@ -25,6 +25,22 @@
             return deferred.promise;
         };
 
+        var updateUser = function (updatedUserData) {
+            var deferred = $q.defer();
+            var cloneUser = angular.copy(identityService.getCurrentUser());
+            angular.extend(cloneUser, updatedUserData);
+
+            cloneUser.$update()
+                .then(function () {
+                    console.log(cloneUser);
+                    identityService.setCurrentUser(cloneUser);
+                    deferred.resolve();
+                }, function (reason) {
+                    deferred.reject(reason);
+                })
+            return deferred.promise;
+        }
+
         var authenticateUser = function (userName, password) {
             var deferred  = $q.defer();
             $http.post('/auth/login', {
@@ -60,6 +76,7 @@
 
         return {
             createUser: createUser,
+            updateUser: updateUser,
             authenticateUser: authenticateUser,
             logoutUser: logoutUser
         };
